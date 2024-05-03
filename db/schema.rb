@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_24_210521) do
     t.integer "child_of"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_categories_on_name", unique: true
   end
 
   create_table "expenses", primary_key: ["transaction_id", "owner"], force: :cascade do |t|
@@ -41,6 +42,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_24_210521) do
     t.decimal "amount", precision: 15, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_income_sources_on_name", unique: true
   end
 
   create_table "incomes", primary_key: ["transaction_id", "owner"], force: :cascade do |t|
@@ -94,6 +96,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_24_210521) do
     t.decimal "amount", precision: 15, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_wallets_on_name", unique: true
   end
 
   add_foreign_key "categories", "categories", column: ["child_of", "owner"], primary_key: ["category_id", "owner"]

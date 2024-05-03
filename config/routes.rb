@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, path: '', path_names: {
-    sign_in: 'login',
-    sign_out: 'logout',
-    registration: 'signup'
+    sign_in: 'api/login',
+    sign_out: 'api/logout',
+    registration: 'api/signup'
   },
   controllers: {
     sessions: 'users/sessions',
@@ -16,6 +16,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  get '/wallets', to: 'wallets#index'
-  post '/wallets/create', to: 'wallets#create'
+  get 'api/wallets', to: 'wallets#index'
+  post 'api/wallets/create', to: 'wallets#create'
+  get 'api/categories', to: 'categories#index'
+  post 'api/categories/create', to: 'categories#create'
+  get 'api/income_sources', to: 'income_sources#index'
+  post 'api/income_sources/create', to: 'income_sources#create'
 end

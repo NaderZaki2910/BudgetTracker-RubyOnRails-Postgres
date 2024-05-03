@@ -11,5 +11,6 @@ class CreateIncomeSources < ActiveRecord::Migration[7.1]
       t.timestamps
     end
     add_foreign_key :income_sources, :users, column: :owner, primary_key: :email
+    add_index :income_sources, :name, unique: true
   end
 end

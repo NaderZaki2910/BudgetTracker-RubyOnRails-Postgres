@@ -9,5 +9,6 @@ class CreateWallets < ActiveRecord::Migration[7.1]
       t.timestamps
     end
     add_foreign_key :wallets, :users, column: :owner, primary_key: :email
+    add_index :wallets, :name, unique: true
   end
 end

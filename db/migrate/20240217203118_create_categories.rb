@@ -9,5 +9,6 @@ class CreateCategories < ActiveRecord::Migration[7.1]
     end
     add_foreign_key :categories, :users, column: :owner, primary_key: :email
     add_foreign_key :categories, :categories, column: [:child_of, :owner], primary_key: [:category_id, :owner]
+    add_index :categories, :name, unique: true
   end
 end
