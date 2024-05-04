@@ -1,28 +1,25 @@
 class IncomeSourcesController < ApplicationController
   respond_to :json
   before_action :process_token
-  before_action :set_income_source, only: %i[show edit update destroy]
+  before_action :set_income_source, only: %i[show update destroy]
 
-  # GET /categories
+  # GET /income_sources
   def index
-    @categories = IncomeSource.all
-    render :json => @categories
+    @income_sources = IncomeSource.all
+    render :json => @income_sources
   end
 
-  # GET /categories/1
+  # GET /income_sources/1
   def show
+    render :json => @income_source
   end
 
-  # GET /categories/new
+  # GET /income_sources/new
   def new
     @income_source = IncomeSource.new
   end
 
-  # GET /categories/1/edit
-  def edit
-  end
-
-  # POST /categories
+  # POST /income_sources
   def create
     logger = Rails.logger
     @max_id = IncomeSource.where(owner: @current_user).pluck('max(income_source_id)').first()
@@ -45,7 +42,7 @@ class IncomeSourcesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /categories/1
+  # PATCH/PUT /income_sources/1
   def update
     if @income_source.update(income_source_params)
       render :json => { "result": 'IncomeSource was successfully updated.', "status": 200}
@@ -54,7 +51,7 @@ class IncomeSourcesController < ApplicationController
     end
   end
 
-  # DELETE /categories/1
+  # DELETE /income_sources/1
   def destroy
     @income_source.destroy
     render :json => { "result": 'IncomeSource was successfully destroyed.', "status": 200}
@@ -68,7 +65,7 @@ class IncomeSourcesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def income_source_params
-      params.require(:IncomeSource).permit(:name, :income_freq_type)
+      params.require(:incomeSource).permit(:name, :income_freq_type)
     end
 
     def process_token

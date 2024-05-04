@@ -1,7 +1,7 @@
 class WalletsController < ApplicationController
   respond_to :json
   before_action :process_token
-  before_action :set_wallet, only: %i[show edit update destroy]
+  before_action :set_wallet, only: %i[show update destroy]
 
   # GET /wallets
   def index
@@ -11,15 +11,12 @@ class WalletsController < ApplicationController
 
   # GET /wallets/1
   def show
+    render :json => @wallet
   end
 
   # GET /wallets/new
   def new
     @wallet = Wallet.new
-  end
-
-  # GET /wallets/1/edit
-  def edit
   end
 
   # POST /wallets

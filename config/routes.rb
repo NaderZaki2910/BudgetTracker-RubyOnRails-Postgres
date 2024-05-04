@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   post 'api/categories/create', to: 'categories#create'
   get 'api/income_sources', to: 'income_sources#index'
   post 'api/income_sources/create', to: 'income_sources#create'
+  get 'api/user', to: 'users#index'
 end

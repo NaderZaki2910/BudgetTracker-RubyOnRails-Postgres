@@ -11,6 +11,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1
   def show
+    render :json => @category
   end
 
   # GET /categories/new
@@ -68,7 +69,7 @@ class CategoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def category_params
-      params.require(:Category).permit(:name, :child_of)
+      params.require(:category).permit(:name, :child_of)
     end
 
     def process_token
